@@ -16,9 +16,17 @@ const handleForm = event => {
 
 const handleFormSubmit = event => {
   event.preventDefault();
-  console.log('Saved data: ', formData);
-  localStorage.removeItem(KEY);
-  event.currentTarget.reset();
+  const form = event.currentTarget;
+  const emailInput = form.elements.email;
+  const messageInput = form.elements.message;
+  if (!emailInput.value || !messageInput.value) {
+    alert('Fill in all the fields!');
+    return;
+  } else {
+    console.log('Saved data: ', formData);
+    localStorage.removeItem(KEY);
+    event.currentTarget.reset();
+  }
 };
 
 function fillWithSaved() {
